@@ -1,6 +1,17 @@
 const express = require('express');
 const app = express();
-const port = 3000;
+
+const { mongoose } = require('./db/mongoose');
+
+const bodyParser = require('body-parser');
+
+// Load in the nongoose models
+
+const { List, Task } = require('./db/models');
+
+
+// Load middleware 
+app.use(bodyParser.json());
 
 
 /* ROUTE HANDLERS */
@@ -13,6 +24,9 @@ const port = 3000;
  */
 app.get('/lists', (req, res) => {
     // we want to return an array of all the lists in the database
+    List.find({}).then((lists) => {
+        res.send(lists);
+    })
 })
 
 /**
@@ -22,6 +36,13 @@ app.get('/lists', (req, res) => {
 app.post('/lists', (req, res) => {
     // we want to create a new lust and return the new list document back to the user (which includes the id)
     // The list information fields will be passed in via the JSON Request body
+    let title = req.body.title;
+    let newList = new List({
+        title
+    });
+    newList.save().then((listDoc) => {
+        res.send(listDoc);
+    })
 });
 
 /**
@@ -45,6 +66,6 @@ app.get('/', (req, res) => {
 })
 
 
-app.listen(port, () => {
-    console.log('listening on port ' + port);
+app.listen(3000, () => {
+    console.log("Server is listening on port 300");
 });

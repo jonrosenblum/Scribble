@@ -51,6 +51,11 @@ app.post('/lists', (req, res) => {
  */
 app.patch('/lists/:id', (req, res) => {
     // We want to update the specified list with the new values in the JSON Request body
+    List.findOneAndUpdate({ _id: req.params.id }, {
+        $set: req.body
+    }).then(() => {
+        res.sendStatus(200);
+    })
 });
 
 /**
@@ -59,6 +64,11 @@ app.patch('/lists/:id', (req, res) => {
  */
 app.delete('/lists/:id', (req, res) => {
     // We want to delete the specified list 
+    List.findOneAndRemove({
+        _id: req.params.id
+    }).then((removedListDoc) => {
+        res.send(removedListDoc);
+    });
 });
 
 app.get('/', (req, res) => {

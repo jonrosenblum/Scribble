@@ -85,7 +85,7 @@ app.get('/lists/:listId/tasks', (req, res) => {
 })
 
 /**
- * POST /lists/:listId/taks
+ * POST /lists/:listId/tasks
  * Purpose: Create a new task in a specified list by listId
  */
 app.post('/lists/:listId/tasks', (req, res) => {
@@ -99,6 +99,24 @@ app.post('/lists/:listId/tasks', (req, res) => {
     })
 })
 
+/**
+ * PATCH /lists/:listId/tasks/:taskId
+ * Purpose: Update an existing task
+ */
+
+app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
+    // we want to update an existing task (specified by taskId)
+    Task.findOneAndUpdate({
+        _id: req.params.taskId,
+        _listId: req.params.listId
+    }, {
+        $set: req.body
+    }
+    ).then(() => {
+        res.sendStatus(200);
+    });
+
+});
 
 app.listen(3000, () => {
     console.log("Server is listening on port 300");

@@ -3,13 +3,11 @@
     <div class="sidebar has-background-white">
       <h1 class="title has-text-primary">Lists</h1>
       <div class="list-menu">
-        <a class="list-menu-item is-active">
-          <p>List #1</p>
-        </a>
         <a
           class="list-menu-item"
           *ngFor="let list of lists"
           [routerLink]="['/lists', list._id]"
+          routerLinkActive="is-active"
         >
           <p>{{ list.title }}</p>
         </a>
@@ -25,6 +23,8 @@
       <div class="task" *ngFor="let task of tasks">
         <p>{{ task.title }}</p>
       </div>
+
+      <button class="button circle-add-button is-primary"></button>
     </div>
   </div>
 </div>

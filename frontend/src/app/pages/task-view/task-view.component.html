@@ -6,14 +6,12 @@
         <a class="list-menu-item is-active">
           <p>List #1</p>
         </a>
-        <a class="list-menu-item">
-          <p>List #2</p>
-        </a>
-        <a class="list-menu-item">
-          <p>List #3</p>
-        </a>
-        <a class="list-menu-item">
-          <p>List #4</p>
+        <a
+          class="list-menu-item"
+          *ngFor="let list of lists"
+          [routerLink]="['/lists', list._id]"
+        >
+          <p>{{ list.title }}</p>
         </a>
       </div>
       <button class="button is-primary has-text-white" routerLink="/new-list">

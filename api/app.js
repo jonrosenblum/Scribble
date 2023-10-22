@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 /* LIST ROUTES */
 
 /**
- * Get /lists
+ * GET /lists
  * Purpose: Get all lists
  */
 app.get('/lists', (req, res) => {
@@ -71,8 +71,32 @@ app.delete('/lists/:id', (req, res) => {
     });
 });
 
-app.get('/', (req, res) => {
-    res.send('Welcome world');
+/**
+ * GET /lists/:listId/taks
+ * Purpose: Get all tasks in a specified list
+ */
+app.get('/lists/:listId/tasks', (req, res) => {
+    // we want to return all tasks that belong to a specific list (specified by listId)
+    Task.find({
+        _listId: req.params.listId
+    }).then((tasks) => {
+        res.send(tasks);
+    })
+})
+
+/**
+ * POST /lists/:listId/taks
+ * Purpose: Create a new task in a specified list by listId
+ */
+app.post('/lists/:listId/tasks', (req, res) => {
+    // we want to create a new task in a list specified by listId
+    let newTask = new Task({
+        title: req.body.title,
+        _listId: req.params.listId
+    });
+    newTask.save().then((newTaskDoc) => {
+        res.send(newTaskDoc)
+    })
 })
 
 

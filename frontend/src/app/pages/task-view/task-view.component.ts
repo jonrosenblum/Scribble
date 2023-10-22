@@ -10,10 +10,4 @@ export class TaskViewComponent {
   constructor(private taskService: TaskService) {}
 
   ngOnInit() {}
-
-  createNewList() {
-    this.taskService.createList('Testing').subscribe((response: any) => {
-      console.log(response);
-    });
-  }
 }

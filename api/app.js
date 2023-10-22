@@ -72,7 +72,7 @@ app.delete('/lists/:id', (req, res) => {
 });
 
 /**
- * GET /lists/:listId/taks
+ * GET /lists/:listId/tasks
  * Purpose: Get all tasks in a specified list
  */
 app.get('/lists/:listId/tasks', (req, res) => {
@@ -83,6 +83,21 @@ app.get('/lists/:listId/tasks', (req, res) => {
         res.send(tasks);
     })
 })
+
+/**
+ * GET /lists/:listId/tasks/:taskId
+ * Purpose: Send a request to an API to get the document of just one item specified by the id
+ */
+
+
+// app.get('/lists/:listId/tasks/:taskId', (req, res) => {
+//     Task.findOne({
+//         _id: req.params.taskId,
+//         _listId: req.params.listId
+//     }).then((task) => {
+//         res.send(task);
+//     })
+// });
 
 /**
  * POST /lists/:listId/tasks
@@ -116,6 +131,20 @@ app.patch('/lists/:listId/tasks/:taskId', (req, res) => {
         res.sendStatus(200);
     });
 
+});
+
+/**
+ * DELETE /lists/:listId/tasks/:taskId
+ * Purpose: Delete a task
+ */
+app.delete('/lists/:listId/tasks/:taskId', (req, res) => {
+    // We want to delete the specified list 
+    Task.findOneAndRemove({
+        _id: req.params.taskId,
+        _listId: req.params.listId
+    }).then((removedTaskDoc) => {
+        res.send(removedTaskDoc);
+    });
 });
 
 app.listen(3000, () => {

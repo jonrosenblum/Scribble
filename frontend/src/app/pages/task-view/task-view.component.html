@@ -16,7 +16,12 @@
           <p>List #4</p>
         </a>
       </div>
-      <button class="button is-primary has-text-white">+ New List</button>
+      <button
+        class="button is-primary has-text-white"
+        (click)="createNewList()"
+      >
+        + New List
+      </button>
     </div>
 
     <div class="task-list-container has-background-light">

@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
 export class WebRequestService {
+
   readonly ROOT_URL;
 
   constructor(private http: HttpClient) {
@@ -26,4 +27,4 @@ export class WebRequestService {
   delete(uri: string) {
     return this.http.delete(`${this.ROOT_URL}/${uri}`);
   }
-}
+};

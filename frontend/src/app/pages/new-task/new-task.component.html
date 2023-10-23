@@ -11,7 +11,12 @@
     <br /><br />
     <div class="buttons is-right">
       <button class="button is-medium" routerLink="/">Cancel</button>
-      <button class="button is-primary has-text-white is-medium">Create</button>
+      <button
+        class="button is-primary has-text-white is-medium"
+        (click)="createTask(taskTitleInput.value)"
+      >
+        Create
+      </button>
     </div>
   </div>
 </div>

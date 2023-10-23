@@ -32,12 +32,9 @@ export class NewTaskComponent implements OnInit {
   }
 
   createTask(title: string) {
-    this.taskService
-      .createTask(title, this.listId)
-      .subscribe((response: any) => {
-        console.log(response);
-        // Now we navigate to /lists/response._id
-        this.router.navigate(['../'], { relativeTo: this.route });
-      });
+    this.taskService.createTask(title, this.listId).subscribe(() => {
+      // Now we navigate to /lists/response._id
+      this.router.navigate(['../'], { relativeTo: this.route });
+    });
   }
 }

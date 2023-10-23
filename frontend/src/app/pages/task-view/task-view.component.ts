@@ -29,7 +29,6 @@ export class TaskViewComponent implements OnInit {
 
   private getListSubTasks() {
     this.route.params.subscribe((params: Params) => {
-      console.log(params);
       if (!Object.keys(params).includes('listId')) {
         return;
       }

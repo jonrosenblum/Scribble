@@ -11,7 +11,7 @@ import { TaskService } from 'src/app/task.service';
 })
 export class TaskViewComponent implements OnInit {
   lists: List[] = [];
-  tasks: Task[] = [];
+  tasks: Task[] | null = null;
 
   constructor(
     private taskService: TaskService,
@@ -25,6 +25,7 @@ export class TaskViewComponent implements OnInit {
 
   private getLists() {
     this.taskService.getLists().subscribe((lists: any) => {
+      console.log(lists);
       this.lists = lists;
     });
   }
@@ -40,6 +41,7 @@ export class TaskViewComponent implements OnInit {
       if (![null, undefined, ''].includes(listId)) {
         this.taskService.getTasks(listId).subscribe((tasks: any) => {
           this.tasks = tasks;
+          console.log('Tasks:', this.tasks);
         });
       }
     });

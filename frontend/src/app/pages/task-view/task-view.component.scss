@@ -28,7 +28,6 @@
   position: relative;
 }
 
-
 .list-menu {
   display: flex;
   flex-direction: column;
@@ -83,4 +82,10 @@
   bottom: 35px;
   right: 35px;
   border-radius: 50%;
+}
+
+.empty-state-text {
+  font-size: 20px;
+  color: #777;
+  text-align: center;
 }

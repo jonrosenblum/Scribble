@@ -117,7 +117,7 @@ let verifySession = (req, res, next) => {
 app.get('/lists', authenticate, (req, res) => {
     // we want to return an array of all the lists in the database that belong to the authenticated user
     List.find({
-        _userId: req.user.id
+        _userId: req.user_id
     }).then((lists) => {
         res.send(lists);
     })
@@ -127,12 +127,13 @@ app.get('/lists', authenticate, (req, res) => {
  * POST /lists
  * Purpose: Create a list 
  */
-app.post('/lists', (req, res) => {
+app.post('/lists', authenticate, (req, res) => {
     // we want to create a new lust and return the new list document back to the user (which includes the id)
     // The list information fields will be passed in via the JSON Request body
     let title = req.body.title;
     let newList = new List({
-        title
+        title,
+        _userId: req.user_id
     });
     newList.save().then((listDoc) => {
         res.send(listDoc);
@@ -162,6 +163,9 @@ app.delete('/lists/:id', (req, res) => {
         _id: req.params.id
     }).then((removedListDoc) => {
         res.send(removedListDoc);
+        // delete all the tasks that are in the deleted list
+        deleteTasksFromList(removedListDoc._id)
+
     });
 });
 

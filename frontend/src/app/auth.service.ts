@@ -31,10 +31,12 @@ export class AuthService {
 
   logout() {
     this.removeSession();
+
+    this.router.navigateByUrl('/login');
   }
 
   getAccessToken() {
-    return localStorage.getItem('x-access-item');
+    return localStorage.getItem('x-access-token');
   }
 
   getRefreshToken() {
@@ -51,13 +53,13 @@ export class AuthService {
     refreshToken: string
   ) {
     localStorage.setItem('userId', userId);
-    localStorage.setItem('accessToken', accessToken);
-    localStorage.setItem('refreshToken', refreshToken);
+    localStorage.setItem('x-access-token', accessToken);
+    localStorage.setItem('x-refresh-token', refreshToken);
   }
 
   private removeSession() {
     localStorage.removeItem('userId');
-    localStorage.removeItem('accessToken');
-    localStorage.removeItem('refreshToken');
+    localStorage.removeItem('x-access-token');
+    localStorage.removeItem('x-refresh-token');
   }
 }

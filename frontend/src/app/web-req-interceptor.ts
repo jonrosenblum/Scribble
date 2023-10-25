@@ -8,6 +8,7 @@ import {
 import { Injectable } from '@angular/core';
 import {
   Observable,
+  Subject,
   catchError,
   empty,
   switchMap,
@@ -21,6 +22,10 @@ import { AuthService } from './auth.service';
 })
 export class WebReqInterceptor implements HttpInterceptor {
   constructor(private authService: AuthService) {}
+
+  refreshingAccessToken: boolean;
+
+  accessTokenRefreshed: Subject<any> = new Subject();
 
   intercept(
     request: HttpRequest<any>,
@@ -51,12 +56,25 @@ export class WebReqInterceptor implements HttpInterceptor {
   }
 
   refreshAccessToken() {
-    // we want to call a method in the auth service to refresh the access token
-    return this.authService.getNewAccessToken().pipe(
-      tap(() => {
-        console.log('Access Token Refresh Successful');
-      })
-    );
+    if (this.refreshingAccessToken) {
+      return new Observable((observer) => {
+        this.accessTokenRefreshed.subscribe(() => {
+          // this code will run when the access token has been refreshed
+          observer.next();
+          observer.complete();
+        });
+      });
+    } else {
+      this.refreshingAccessToken = true;
+      // we want to call a method in the auth service to send a request to refresh the access token
+      return this.authService.getNewAccessToken().pipe(
+        tap(() => {
+          console.log('Access Token Refreshed!');
+          this.refreshingAccessToken = false;
+          this.accessTokenRefreshed.next();
+        })
+      );
+    }
   }
 
   addAuthHeader(request: HttpRequest<any>) {

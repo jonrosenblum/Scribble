@@ -8,7 +8,11 @@ import { shareReplay, tap } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private webService: WebRequestService, private router: Router) {}
+  constructor(
+    private webService: WebRequestService,
+    private router: Router,
+    private http: HttpClient
+  ) {}
 
   login(email: string, password: string) {
     return this.webService.login(email, password).pipe(
@@ -43,6 +47,10 @@ export class AuthService {
     return localStorage.getItem('x-refresh-token');
   }
 
+  getUserId() {
+    return localStorage.getItem('user-id');
+  }
+
   setAccessToken(accessToken: string) {
     localStorage.setItem('x-access-token', accessToken);
   }
@@ -61,5 +69,12 @@ export class AuthService {
     localStorage.removeItem('userId');
     localStorage.removeItem('x-access-token');
     localStorage.removeItem('x-refresh-token');
+  }
+
+  getNewAccessToken() {
+    return this.http.get(
+      `${this.webService.ROOT_URL}/users/me/access_token`,
+      {}
+    );
   }
 }

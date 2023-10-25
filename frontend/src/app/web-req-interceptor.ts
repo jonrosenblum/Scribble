@@ -6,7 +6,14 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, throwError } from 'rxjs';
+import {
+  Observable,
+  catchError,
+  empty,
+  switchMap,
+  tap,
+  throwError,
+} from 'rxjs';
 import { AuthService } from './auth.service';
 
 @Injectable({
@@ -26,10 +33,28 @@ export class WebReqInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         console.log(error);
         if (error.status === 401) {
-          this.authService.logout();
-          console.log('test');
+          this.refreshAccessToken().pipe(
+            switchMap(() => {
+              request = this.addAuthHeader(request);
+              return next.handle(request);
+            }),
+            catchError((error: any) => {
+              console.log(error);
+              this.authService.logout();
+              return empty();
+            })
+          );
         }
         return throwError(error);
+      })
+    );
+  }
+
+  refreshAccessToken() {
+    // we want to call a method in the auth service to refresh the access token
+    return this.authService.getNewAccessToken().pipe(
+      tap(() => {
+        console.log('Access Token Refresh Successful');
       })
     );
   }

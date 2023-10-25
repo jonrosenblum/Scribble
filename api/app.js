@@ -144,9 +144,9 @@ app.post('/lists', authenticate, (req, res) => {
  * PATCH /lists/:id
  * Purpose: Update specified list 
  */
-app.patch('/lists/:id', (req, res) => {
+app.patch('/lists/:id', authenticate, (req, res) => {
     // We want to update the specified list with the new values in the JSON Request body
-    List.findOneAndUpdate({ _id: req.params.id }, {
+    List.findOneAndUpdate({ _id: req.params.id, _userId: req.user_id }, {
         $set: req.body
     }).then(() => {
         res.sendStatus(200);

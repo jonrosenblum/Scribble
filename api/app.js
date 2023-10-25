@@ -157,10 +157,11 @@ app.patch('/lists/:id', authenticate, (req, res) => {
  * DELETE /lists/:id
  * Purpose: Delete a list 
  */
-app.delete('/lists/:id', (req, res) => {
+app.delete('/lists/:id', authenticate, (req, res) => {
     // We want to delete the specified list 
     List.findOneAndRemove({
-        _id: req.params.id
+        _id: req.params.id,
+        _userId: req.user_id
     }).then((removedListDoc) => {
         res.send(removedListDoc);
         // delete all the tasks that are in the deleted list
@@ -173,7 +174,7 @@ app.delete('/lists/:id', (req, res) => {
  * GET /lists/:listId/tasks
  * Purpose: Get all tasks in a specified list
  */
-app.get('/lists/:listId/tasks', (req, res) => {
+app.get('/lists/:listId/tasks', authenticate, (req, res) => {
     // we want to return all tasks that belong to a specific list (specified by listId)
     Task.find({
         _listId: req.params.listId
@@ -187,15 +188,32 @@ app.get('/lists/:listId/tasks', (req, res) => {
  * POST /lists/:listId/tasks
  * Purpose: Create a new task in a specified list by listId
  */
-app.post('/lists/:listId/tasks', (req, res) => {
+app.post('/lists/:listId/tasks', authenticate, (req, res) => {
     // we want to create a new task in a list specified by listId
-    let newTask = new Task({
-        title: req.body.title,
-        _listId: req.params.listId
-    });
-    newTask.save().then((newTaskDoc) => {
-        res.send(newTaskDoc)
+
+    List.findOne({
+        _id: req.params.listId,
+        _userId: req.user_id
+    }).then((user) => {
+        if (user) {
+            // user object valide
+            return true
+        }
+        return false
+    }).then(canCreateTask => {
+        if (canCreateTask) {
+            let newTask = new Task({
+                title: req.body.title,
+                _listId: req.params.listId,
+            });
+            newTask.save().then((newTaskDoc) => {
+                res.send(newTaskDoc)
+            })
+        } else {
+            res.sendStatus(404);
+        }
     })
+
 })
 
 /**

@@ -5,8 +5,8 @@
       "type": "npm",
       "script": "dev",
       "problemMatcher": [],
-      "label": "npm: dev",
-      "detail": "npx nodemon -x \"npm run dev:frontend\" \"npm run dev:api\" ",
+      "label": "npm: dev:docker",
+      "detail": "start docker dev environment container",
       "group": {
         "kind": "build",
         "isDefault": true

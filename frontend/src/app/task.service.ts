@@ -31,4 +31,7 @@ export class TaskService {
       completed: !task.completed,
     });
   }
+
+  deleteTask(task: Task) {
+    
 }

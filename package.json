@@ -3,6 +3,7 @@
     "mongoose": "^7.6.3"
   },
   "scripts": {
+    "postinstall": "npm --prefix frontend install && npm --prefix api install",
     "dev:frontend": "npm --prefix frontend run start",
     "dev:api": "npm --prefix api run dev",
     "dev": "npx concurrently \"npm run dev:frontend\"  \"npm run dev:api\" "

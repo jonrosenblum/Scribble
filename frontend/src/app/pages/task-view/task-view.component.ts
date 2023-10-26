@@ -13,7 +13,7 @@ export class TaskViewComponent implements OnInit {
   lists: List[] = [];
   tasks: Task[] | null = null;
 
-  selectedListId: string;
+  selectedListId!: string;
 
   constructor(
     private taskService: TaskService,

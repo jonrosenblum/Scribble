@@ -21,8 +21,8 @@ export class AuthService {
         // the auth tokens will be in the header of this response
         this.setSession(
           res.body._id,
-          res.headers.get('x-access-token'),
-          res.headers.get('x-refresh-token')
+          res.headers.get('x-access-tokens') as any as string,
+          res.headers.get('x-refresh-token')!
         );
         console.log('Successfully signed up and now logged in!');
       })
@@ -90,14 +90,14 @@ export class AuthService {
     return this.http
       .get(`${this.webService.ROOT_URL}/users/me/access_token`, {
         headers: {
-          'x-refresh-token': this.getRefreshToken(),
-          _id: this.getUserId(),
+          'x-refresh-token': this.getRefreshToken()!,
+          _id: this.getUserId()!,
         },
         observe: 'response',
       })
       .pipe(
         tap((res: HttpResponse<any>) => {
-          this.setAccessToken(res.headers['x-access-token']);
+          this.setAccessToken(res.headers.get('x-access-token')!);
         })
       );
   }

@@ -109,6 +109,7 @@ let verifySession = (req, res, next) => {
 /* ROUTE HANDLERS */
 
 /* LIST ROUTES */
+app.get('/hello',(req,res)=> res.send('world'))
 
 /**
  * GET /lists

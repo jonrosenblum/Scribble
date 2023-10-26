@@ -1,8 +1,7 @@
 <p align="center">
     <a href=""><img src="https://img.shields.io/badge/MongoDB-4EA94B?style=for-the-badge&logo=mongodb&logoColor=white" /></a>
-    <a href=""><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge" 
-    /></a>
-     <a href=""><img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /></a>
+    <a href=""><img src="https://img.shields.io/badge/Express.js-404D59?style=for-the-badge"/></a>
+    <a href=""><img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" /></a>
     <a href=""><img src="https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white" /></a>
     <br>
     <a href=""><img src="https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white" /></a>
@@ -22,6 +21,7 @@
 
 - [Introduction](#Introduction)
 - [Key Functionalities](#Key-Functionalities)
+- [Accomplishments](#Accomplishments)
 - [License](#License)
 
 ## Introduction
@@ -36,17 +36,39 @@ Welcome to Tasker, your digital notebook for efficient task management. Tasker i
 
 - **Cross-Platform Sync**: Access your tasks from anywhere, as Tasker seamlessly syncs your data across all your devices.
 
-- **Rich Text Editing**: Write notes with style using a rich text editor. Format text, add images, and create checklists to suit your needs.
-
-- **Reminders and Due Dates**: Set reminders and due dates to keep track of important tasks and deadlines.
-
-- **Effortless Search**: Find your tasks quickly with a robust search feature. Never lose track of your important notes.
-
 - **Secure and Private**: Your data is kept safe and private with robust security measures.
 
-- **Customizable Themes**: Personalize Tasker with themes to match your style and preferences.
-
 Tasker is your digital companion for staying organized and productive, just like Apple's Notes, but tailored to your unique needs.
+
+## Accomplishments
+
+### Deployment with Docker and AWS
+
+We're excited to share the successful deployment of Tasker using Docker containerization and AWS (Amazon Web Services) server. This deployment approach offers scalability, reliability, and ease of management for our task management application.
+
+#### Docker Containerization
+
+Tasker is containerized using Docker to encapsulate the application and its dependencies into isolated containers. This ensures a consistent and reproducible environment across different stages of the deployment process.
+
+- **Docker Image**: We've created a Docker image of Tasker, making it portable and easy to deploy on various environments.
+
+- **Container Orchestration**: We've also leveraged Docker Compose for orchestrating multiple containers, allowing us to manage different components of Tasker seamlessly.
+
+#### AWS Server Deployment
+
+For production-grade hosting, we chose Amazon Web Services (AWS) as our cloud provider. AWS offers a wide range of services that perfectly align with our requirements.
+
+- **Elastic Compute Cloud (EC2)**: We've deployed Tasker on AWS EC2 instances, providing scalable, secure, and customizable virtual servers.
+
+- **Load Balancing**: Tasker's deployment utilizes AWS Elastic Load Balancing (ELB) to distribute incoming traffic across multiple EC2 instances, ensuring high availability and redundancy.
+
+- **Auto Scaling**: We've set up Auto Scaling to automatically adjust the number of EC2 instances based on traffic demands, ensuring optimal performance and cost efficiency.
+
+- **Security**: Our AWS deployment follows best practices for security, including network security groups and IAM roles to restrict access and protect data.
+
+This deployment architecture ensures that Tasker is highly available, fault-tolerant, and can handle varying levels of traffic, making it a robust and scalable solution for our users.
+
+We're proud of this accomplishment, and it reinforces our commitment to delivering a secure and reliable task management application.
 
 ## License
 

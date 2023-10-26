@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  angular:
+    container_name: angular-dev
+    build:
+      context: .
+      dockerfile: DockerFile
+    ports:
+      - "4200:4200"
+      - "3000:3000"
+    volumes:
+      - .:/app
+    working_dir: /app
+    # command: npm run dev
+    # replicas: 3
+
+  mongo:
+    container_name: mongo-db
+    image: mongo
+    restart: always
+    # environment:
+      # MONGO_INITDB_ROOT_USERNAME: root
+      # MONGO_INITDB_ROOT_PASSWORD: example
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./data:/data/db
+
+  

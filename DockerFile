@@ -27,5 +27,5 @@ CMD ["npm", "run", "dev"]
 from dev as prod
 
 # run build command with 512 memory limit in container
-RUN npm run build --max-old-space-size=512
+RUN npm run build --max-old-space-size=128
 

@@ -16,7 +16,7 @@ services:
     working_dir: /app
     # depends on mongo
     depends_on: [mongo]
-    cpu_percent: 50
+    cpu_percent: 80
     mem_limit: 256m
 
     # command: npm run dev
@@ -39,7 +39,7 @@ services:
     command: npm run start
     profiles:
       - "prod"
-    cpu_percent: 50
+    cpu_percent: 80
     mem_limit: 256m
 
   mongo:

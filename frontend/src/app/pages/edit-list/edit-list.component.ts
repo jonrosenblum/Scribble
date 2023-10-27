@@ -14,12 +14,12 @@ export class EditListComponent {
     private router: Router
   ) {}
 
-  listId: string;
+  listId!: string;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.listId = params.listId;
-      console.log(params.listId);
+      this.listId = params['listId'];
+      console.log(params['listId']);
     });
   }
 

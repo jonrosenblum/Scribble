@@ -14,13 +14,13 @@ export class EditTaskComponent {
     private router: Router
   ) {}
 
-  taskId: string;
-  listId: string;
+  taskId!: string;
+  listId!: string;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
-      this.taskId = params.taskId;
-      this.listId = params.listId;
+      this.taskId = params['taskId'];
+      this.listId = params['listId'];
     });
   }
 

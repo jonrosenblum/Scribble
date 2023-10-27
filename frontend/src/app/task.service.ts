@@ -32,6 +32,23 @@ export class TaskService {
     });
   }
 
-  deleteTask(task: Task) {
-    
+  deleteTask(listId: string, taskId: string) {
+    return this.webReqService.delete(`lists/${listId}/tasks/${taskId}`);
+  }
+
+  updateList(listId: string, title: string) {
+    return this.webReqService.patch(`lists/${listId}`, { title });
+    // We want to send a web request to update a list
+    // return this.webReqService.patch(`lists/${listId}`, { title });
+  }
+
+  deleteList(listId: string) {
+    return this.webReqService.delete(`lists/${listId}`);
+  }
+
+  updateTask(listId: string, taskId: string, title: string) {
+    return this.webReqService.patch(`lists/${listId}/tasks/${taskId}`, {
+      title,
+    });
+  }
 }

@@ -8,7 +8,7 @@
 		"dev:api": "npm --prefix api run dev -- --max-old-space-size=128",
 		"dev": "npx concurrently \"npm run dev:frontend\"  \"npm run dev:api\"",
 		"dev:docker": "docker compose up",
-		"build:frontend": "npm --prefix frontend run build -- --max-git old-space-size=128",
+		"build:frontend": "npm --prefix frontend run build -- --max-old-space-size=128",
 		"build": "npm run build:frontend",
 		"start": "npm --prefix api start -- --max-old-space-size=128"
 	},

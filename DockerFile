@@ -7,17 +7,21 @@ WORKDIR /app
 # Install Angular CLI
 RUN npm install -g @angular/cli
 
-# Copy the current directory contents into the container at /app
-COPY . /app
-
 copy package.json /app
+copy frontend/package.json /app/frontend/package.json
+copy api/package.json /app/api/package.json
+
 
 # Install any needed packages specified in package.json
 RUN npm install
 
 
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+
 # Set the default command to run ng serve
-CMD ["npm", "run", "dev"]
+CMD ["npm", "run", "dev","--","--max-old-space-size=128"]
 
 
 
@@ -27,7 +31,7 @@ CMD ["npm", "run", "dev"]
 from dev as prod
 
 # run build command with 512 memory limit in container
-RUN npm run build --max-old-space-size=128
+RUN npm run build -- --max-old-space-size=128
 
 CMD [ "npm", "run", "start" ]
 

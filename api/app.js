@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 
 const { mongoose } = require('./db/mongoose');
+const path = require('path');
 
 const bodyParser = require('body-parser');
 
@@ -18,8 +19,7 @@ const jwt = require('jsonwebtoken');
 app.use(bodyParser.json());
 
 //serve static files
-app.use(express.static(__dirname + '../frontend/dist/frontend'));
-
+app.use(express.static(path.join(__dirname, '../', 'frontend/dist/frontend')));
 
 // CORS HEADERS MIDDLEWARE
 app.use(function (req, res, next) {

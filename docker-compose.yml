@@ -35,10 +35,12 @@ services:
     working_dir: /app
     depends_on: [mongo]
     command: npm run start
+    profiles:
+      - "prod"
 
   mongo:
     container_name: mongo-db
-    image: mongo
+    image: mongo:4.4.4
     restart: always
     # environment:
       # MONGO_INITDB_ROOT_USERNAME: root

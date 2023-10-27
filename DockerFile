@@ -19,9 +19,13 @@ RUN npm install
 # Set the default command to run ng serve
 CMD ["npm", "run", "dev"]
 
+
+
+
 ## this is another docker image layer based on the dev from above,
 ## this image will be used for the prod container
 from dev as prod
 
-RUN npm run build
+# run build command with 512 memory limit in container
+RUN npm run build --max-old-space-size=512
 

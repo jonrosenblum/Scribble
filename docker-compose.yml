@@ -37,6 +37,7 @@ services:
     command: npm run start
     profiles:
       - "prod"
+    cpu_percent: 50
 
   mongo:
     container_name: mongo-db

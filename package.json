@@ -4,13 +4,13 @@
   },
   "scripts": {
     "postinstall": "npm --prefix frontend install && npm --prefix api install",
-    "dev:frontend": "npm --prefix frontend run start --max-old-space-size=512",
-    "dev:api": "npm --prefix api run dev --max-old-space-size=512",
+    "dev:frontend": "npm --prefix frontend run start",
+    "dev:api": "npm --prefix api run dev",
     "dev": "npx concurrently \"npm run dev:frontend\"  \"npm run dev:api\"",
     "dev:docker": "docker compose up",
     "build:frontend": "npm --prefix frontend run build",
     "build": "npm --prefix frontend run build",
-    "start": "npm --prefix api start --max-old-space-size=512"
+    "start": "npm --prefix api start"
   },
   "devDependencies": {
     "concurrently": "^8.2.2",

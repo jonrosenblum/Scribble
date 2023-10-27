@@ -22,8 +22,8 @@ CMD ["npm", "run", "dev"]
 
 
 
-## this is another docker image layer based on the dev from above,
-## this image will be used for the prod container
+# this is another docker image layer based on the dev from above,
+# this image will be used for the prod container
 from dev as prod
 
 # run build command with 512 memory limit in container

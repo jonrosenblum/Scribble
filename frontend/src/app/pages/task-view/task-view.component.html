@@ -2,9 +2,7 @@
   <div class="task-manager-container">
     <div class="sidebar has-background-white">
       <h1 class="title has-text-primary"><a routerLink="/">Lists</a></h1>
-      <button class="button is-primary" (click)="logout()">
-        logout
-      </button>
+      
       <div class="list-menu">
         <a
           class="list-menu-item"
@@ -35,9 +33,11 @@
             </div>
             <div class="dropdown-menu" id="dropdown-menu4" role="menu">
               <div class="dropdown-content">
-                <div class="dropdown-item">
-                  <p>You can insert <strong>any type of content</strong> within the dropdown menu.</p>
-                </div>
+                <a class="dropdown-item">
+                  <button class="button is-primary" (click)="logout()">
+                    Logout
+                  </button>
+                </a>
               </div>
             </div>
           </div>

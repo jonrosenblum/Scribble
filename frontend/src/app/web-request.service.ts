@@ -10,7 +10,7 @@ export class WebRequestService {
 
   constructor(private http: HttpClient) {
     // this.ROOT_URL = process.env['ROOT_URL'] ?? 'http://localhost:3000';
-    // this.ROOT_URL = "/api";
+    this.ROOT_URL = "/api";
   }
 
   get(uri: string) {

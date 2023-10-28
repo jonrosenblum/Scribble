@@ -2,21 +2,21 @@
   <div class="task-manager-container">
     <div class="sidebar has-background-white">
       <h1 class="title has-text-primary"><a routerLink="/">Lists</a></h1>
+      <button class="button is-primary" (click)="logout()">
+        logout
+      </button>
       <div class="list-menu">
         <a
           class="list-menu-item"
           *ngFor="let list of lists"
-          [routerLink]="['/lists', list._id]"
+          [routerLink]="['/authenticated/lists', list._id]"
           routerLinkActive="is-active"
         >
           <p>{{ list.title }}</p>
         </a>
 
-        <button class="button is-primary" (click)="logout()">
-          <i class="fas fa-pen"></i>
-        </button>
       </div>
-      <button class="button is-primary has-text-white" routerLink="/new-list">
+      <button class="button is-primary has-text-white" routerLink="/authenticated/new-list">
         + New List
       </button>
     </div>

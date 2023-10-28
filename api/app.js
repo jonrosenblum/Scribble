@@ -389,6 +389,10 @@ app.get("/api/users/me/access-token", verifySession, (req, res) => {
     });
 });
 
+app.get('/*', (req, res) => {
+    res.redirect('/');
+  });
+
 /* HELPER METHODS */
 let deleteTasksFromList = (_listId) => {
   Task.deleteMany({

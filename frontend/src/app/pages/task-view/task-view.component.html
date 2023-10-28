@@ -32,6 +32,21 @@
         >
           <p>{{ task.title }}</p>
         </div>
+        <div class="task-buttons">
+
+          <button class="button">
+            <div class="icon">
+              <i class="fas fa-edit"></i>
+            </div>
+          </button>
+
+          <button class="button is-danger" style="margin-left: 10px;">
+            <div class="icon">
+              <i class="fas fa-trash"></i>
+            </div>
+          </button>
+
+        </div>
 
         <h3 class="empty-state-text" *ngIf="tasks.length === 0">
           There are no tasks here! Click the add button to create a new task.

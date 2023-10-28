@@ -23,26 +23,14 @@
 
     <div class="task-list-container has-background-light">
       <div *ngIf="tasks">
-        <div class="top-bar">
-          <h1 class="title has-text-primary">
-            Tasks
-          </h1>
-          <div class="dropdown is-hoverable is-right">
-            <div class="dropdown-trigger">
-              <button class="button" aria-haspopup="true" aria-controls="dropdown-menu4">
-                <span class="icon is-small">
-                  <i class="fas fa-cog" aria-hidden="true"></i>
-                </span>
-              </button>
-            </div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="task" *ngFor="let task of tasks" (click)="onTaskClick(task)" [ngClass]="{ 'completed': task.completed }">
-          <div class="task-text">
-            <p>{{ task.title }}</p>
-          </div>
+        <h1 class="title has-text-primary">Tasks</h1>
+        <div
+          class="task"
+          *ngFor="let task of tasks"
+          (click)="onTaskClick(task)"
+          [ngClass]="{ completed: task.completed }"
+        >
+          <p>{{ task.title }}</p>
           <div class="task-buttons">
 
             <button class="button">
@@ -50,13 +38,13 @@
                 <i class="fas fa-edit"></i>
               </div>
             </button>
-
+  
             <button class="button is-danger" style="margin-left: 10px;">
               <div class="icon">
                 <i class="fas fa-trash"></i>
               </div>
             </button>
-
+  
           </div>
         </div>
        
@@ -77,4 +65,5 @@
         <h3 class="empty-state-text">Please select a list from the sidebar</h3>
       </div>
     </div>
+  </div>
 </div>

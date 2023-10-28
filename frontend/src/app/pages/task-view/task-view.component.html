@@ -31,19 +31,25 @@
                 </span>
               </button>
             </div>
-            <div class="dropdown-menu" id="dropdown-menu4" role="menu">
+            <div class="dropdown-menu" id="dropdown-menu3" role="menu">
               <div class="dropdown-content">
-                <a class="dropdown-item">
-                  <button class="button is-primary" (click)="logout()">
-                    Logout
-                  </button>
+                <a href="#" class="dropdown-item">
+                  My Profile
+                </a>
+                <a href="#" class="dropdown-item">
+                  Advanced Settings
+                </a>
+                <a (click)="logout()" class="dropdown-item">
+                  Logout
                 </a>
               </div>
-            </div>
           </div>
         </div>
-
-
+        
+        <!-- <button class="button is-primary" (click)="logout()">
+          Logout
+        </button>
+         -->
         <div
           class="task"
           *ngFor="let task of tasks"

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { AuthService } from 'src/app/auth.service';
 import { List } from 'src/app/models/list.model';
 import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/task.service';
@@ -18,7 +19,8 @@ export class TaskViewComponent implements OnInit {
   constructor(
     private taskService: TaskService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit() {
@@ -70,11 +72,15 @@ export class TaskViewComponent implements OnInit {
     this.taskService
       .deleteTask(this.selectedListId, id)
       .subscribe((res: any) => {
-        if (!this.tasks){
+        if (!this.tasks) {
           return;
         }
         this.tasks = this.tasks.filter((val) => val._id !== id);
         console.log(res);
       });
+  }
+
+  logout() {
+    this.authService.logout();
   }
 }

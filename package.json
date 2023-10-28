@@ -10,7 +10,13 @@
 		"dev:docker": "docker compose up",
 		"build:frontend": "npm --prefix frontend run build",
 		"build": "npm run build:frontend",
-		"start": "npm --prefix api start"
+		"start": "npm --prefix api start",
+		"angular:bash": "docker compose exec angular bash",
+		"reset:mongo": "docker compose kill mongo && docker compose rm -f mongo && rm -rf data && docker compose up -d mongo",
+		"start:mongo": "docker compose up -d mongo",
+		"angular:logs": "docker compose logs -f angular",
+		"docker:stats": "docker stats"
+
 	},
 	"devDependencies": {
 		"concurrently": "^8.2.2",

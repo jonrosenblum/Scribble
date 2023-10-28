@@ -3,6 +3,12 @@ import { Injectable } from '@angular/core';
 import { WebRequestService } from './web-request.service';
 import { Router } from '@angular/router';
 import { shareReplay, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+
+const TOKEN_KEY = {
+  ACCESS_TOKEN: 'x-access-token',
+  REFRESH_TOKEN: 'x-refresh-token',
+};
 
 @Injectable({
   providedIn: 'root',
@@ -21,8 +27,8 @@ export class AuthService {
         // the auth tokens will be in the header of this response
         this.setSession(
           res.body._id,
-          res.headers.get('x-access-tokens') as any as string,
-          res.headers.get('x-refresh-token')!
+          res.headers.get(TOKEN_KEY.ACCESS_TOKEN) as any as string,
+          res.headers.get(TOKEN_KEY.REFRESH_TOKEN)!
         );
         console.log('Successfully signed up and now logged in!');
       })
@@ -33,8 +39,8 @@ export class AuthService {
     return this.webService.login(email, password).pipe(
       shareReplay(),
       tap((res: HttpResponse<any>) => {
-        const accessToken = res.headers.get('x-access-token');
-        const refreshToken = res.headers.get('x-refresh-token');
+        const accessToken = res.headers.get(TOKEN_KEY.ACCESS_TOKEN);
+        const refreshToken = res.headers.get(TOKEN_KEY.REFRESH_TOKEN);
         if (accessToken !== null && refreshToken !== null) {
           this.setSession(res.body._id, accessToken, refreshToken);
           console.log('LOGGED IN!');
@@ -55,11 +61,11 @@ export class AuthService {
   }
 
   getAccessToken() {
-    return localStorage.getItem('x-access-token');
+    return localStorage.getItem(TOKEN_KEY.ACCESS_TOKEN);
   }
 
   getRefreshToken() {
-    return localStorage.getItem('x-refresh-token');
+    return localStorage.getItem(TOKEN_KEY.REFRESH_TOKEN);
   }
 
   getUserId() {
@@ -67,7 +73,7 @@ export class AuthService {
   }
 
   setAccessToken(accessToken: string) {
-    localStorage.setItem('x-access-token', accessToken);
+    localStorage.setItem(TOKEN_KEY.ACCESS_TOKEN, accessToken);
   }
 
   private setSession(
@@ -76,14 +82,14 @@ export class AuthService {
     refreshToken: string
   ) {
     localStorage.setItem('userId', userId);
-    localStorage.setItem('x-access-token', accessToken);
-    localStorage.setItem('x-refresh-token', refreshToken);
+    localStorage.setItem(TOKEN_KEY.ACCESS_TOKEN, accessToken);
+    localStorage.setItem(TOKEN_KEY.REFRESH_TOKEN, refreshToken);
   }
 
   private removeSession() {
     localStorage.removeItem('userId');
-    localStorage.removeItem('x-access-token');
-    localStorage.removeItem('x-refresh-token');
+    localStorage.removeItem(TOKEN_KEY.ACCESS_TOKEN);
+    localStorage.removeItem(TOKEN_KEY.REFRESH_TOKEN);
   }
 
   getNewAccessToken() {
@@ -97,8 +103,46 @@ export class AuthService {
       })
       .pipe(
         tap((res: HttpResponse<any>) => {
-          this.setAccessToken(res.headers.get('x-access-token')!);
+          this.setAccessToken(res.headers.get(TOKEN_KEY.ACCESS_TOKEN)!);
         })
       );
+  }
+
+  isAuthenticated(): boolean {
+    let isTokenValid = false;
+    const token = this.getAccessToken();
+    const now = new Date();
+
+    console.log({ token });
+    if (!token) {
+      return false;
+    }
+
+    try {
+      const jwt_decoded = jwtDecode(token);
+      const tokenExpireDateNumber = jwt_decoded?.exp;
+      if (!tokenExpireDateNumber) {
+        return false;
+      }
+
+      const tokenExpireDate = new Date(tokenExpireDateNumber);
+
+      isTokenValid = tokenExpireDateNumber> now.getTime()  / 1000;
+      const isTokenExpired = !isTokenValid;
+
+      console.log({
+        tokenExpireDate,
+        now,
+        isTokenValid,
+        isTokenExpired,
+        tokenExpireDateNumber,
+        jwt_decoded,
+      });
+    } catch (error) {
+      console.error('token validation failed', { token, error });
+    }
+
+    console.log({ isTokenValid });
+    return isTokenValid;
   }
 }

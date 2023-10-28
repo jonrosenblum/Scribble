@@ -18,7 +18,7 @@ export class SignUpComponent implements OnInit {
       .signup(email, password)
       .subscribe((res: HttpResponse<any>) => {
         console.log(res);
-        this.router.navigate(['/lists']);
+        this.router.navigate(['/authenticated/lists']);
       });
   }
 }

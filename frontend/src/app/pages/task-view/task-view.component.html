@@ -11,6 +11,10 @@
         >
           <p>{{ list.title }}</p>
         </a>
+
+        <button class="button is-primary" (click)="logout()">
+          <i class="fas fa-pen"></i>
+        </button>
       </div>
       <button class="button is-primary has-text-white" routerLink="/new-list">
         + New List

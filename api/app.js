@@ -115,13 +115,13 @@ let verifySession = (req, res, next) => {
 /* ROUTE HANDLERS */
 
 /* LIST ROUTES */
-app.get("/hello", (req, res) => res.send("world"));
+app.get("/api/hello", (req, res) => res.send("world"));
 
 /**
  * GET /lists
  * Purpose: Get all lists
  */
-app.get("/lists", authenticate, (req, res) => {
+app.get("/api/lists", authenticate, (req, res) => {
   // we want to return an array of all the lists in the database that belong to the authenticated user
   List.find({
     _userId: req.user_id,
@@ -134,7 +134,7 @@ app.get("/lists", authenticate, (req, res) => {
  * POST /lists
  * Purpose: Create a list
  */
-app.post("/lists", authenticate, (req, res) => {
+app.post("/api/lists", authenticate, (req, res) => {
   // we want to create a new lust and return the new list document back to the user (which includes the id)
   // The list information fields will be passed in via the JSON Request body
   let title = req.body.title;
@@ -151,7 +151,7 @@ app.post("/lists", authenticate, (req, res) => {
  * PATCH /lists/:id
  * Purpose: Update specified list
  */
-app.patch("/lists/:id", authenticate, (req, res) => {
+app.patch("/api/lists/:id", authenticate, (req, res) => {
   // We want to update the specified list with the new values in the JSON Request body
   List.findOneAndUpdate(
     { _id: req.params.id, _userId: req.user_id },
@@ -167,7 +167,7 @@ app.patch("/lists/:id", authenticate, (req, res) => {
  * DELETE /lists/:id
  * Purpose: Delete a list
  */
-app.delete("/lists/:id", authenticate, (req, res) => {
+app.delete("/api/lists/:id", authenticate, (req, res) => {
   // We want to delete the specified list
   List.findOneAndRemove({
     _id: req.params.id,
@@ -183,7 +183,7 @@ app.delete("/lists/:id", authenticate, (req, res) => {
  * GET /lists/:listId/tasks
  * Purpose: Get all tasks in a specified list
  */
-app.get("/lists/:listId/tasks", authenticate, (req, res) => {
+app.get("/api/lists/:listId/tasks", authenticate, (req, res) => {
   // we want to return all tasks that belong to a specific list (specified by listId)
   Task.find({
     _listId: req.params.listId,
@@ -196,7 +196,7 @@ app.get("/lists/:listId/tasks", authenticate, (req, res) => {
  * POST /lists/:listId/tasks
  * Purpose: Create a new task in a specified list by listId
  */
-app.post("/lists/:listId/tasks", authenticate, (req, res) => {
+app.post("/api/lists/:listId/tasks", authenticate, (req, res) => {
   // we want to create a new task in a list specified by listId
 
   List.findOne({
@@ -232,7 +232,7 @@ app.post("/lists/:listId/tasks", authenticate, (req, res) => {
  * Purpose: Update an existing task
  */
 
-app.patch("/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
+app.patch("/api/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
   // we want to update an existing task (specified by taskId)
 
   List.findOne({
@@ -269,7 +269,7 @@ app.patch("/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
  * DELETE /lists/:listId/tasks/:taskId
  * Purpose: Delete a task
  */
-app.delete("/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
+app.delete("/api/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
   List.findOne({
     _id: req.params.listId,
     _userId: req.user_id,
@@ -302,7 +302,7 @@ app.delete("/lists/:listId/tasks/:taskId", authenticate, (req, res) => {
  * POST /users
  * Purpose: Sign up
  */
-app.post("/users/signup", (req, res) => {
+app.post("/api/users/signup", (req, res) => {
   // User sign up
 
   let body = req.body;
@@ -338,7 +338,7 @@ app.post("/users/signup", (req, res) => {
  * POST /users/login
  * Purpose: Login
  */
-app.post("/users/login", (req, res) => {
+app.post("/api/users/login", (req, res) => {
   let email = req.body.email;
   let password = req.body.password;
 
@@ -377,7 +377,7 @@ app.post("/users/login", (req, res) => {
  * GET /users/me/access-token
  * Purpose: generates and returns an access token
  */
-app.get("/users/me/access-token", verifySession, (req, res) => {
+app.get("/api/users/me/access-token", verifySession, (req, res) => {
   // we know that the user/caller is authenticated and we have the user_id and user object available to us
   req.userObject
     .generateAccessAuthToken()

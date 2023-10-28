@@ -1,0 +1,7 @@
+
+{
+  "/api": {
+    "target": "http://some-correct-backend-url:optional-port",
+    "secure": false
+  }
+}

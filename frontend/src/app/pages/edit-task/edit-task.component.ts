@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { Task } from 'src/app/models/task.model';
 import { TaskService } from 'src/app/task.service';
 
 @Component({
@@ -16,11 +17,16 @@ export class EditTaskComponent {
 
   taskId!: string;
   listId!: string;
+  task: Task | null = null;
 
   ngOnInit() {
     this.route.params.subscribe((params: Params) => {
       this.taskId = params['taskId'];
       this.listId = params['listId'];
+
+      this.taskService.getTasks(this.listId).subscribe((tasks) => {
+        this.task = (tasks as Task[]).find((task) => task._id === this.taskId)!;
+      });
     });
   }
 
@@ -28,7 +34,7 @@ export class EditTaskComponent {
     this.taskService
       .updateTask(this.listId, this.taskId, title)
       .subscribe(() => {
-        this.router.navigate(['/lists', this.listId]);
+        this.router.navigate(['authenticated/lists', this.listId]);
       });
   }
 }

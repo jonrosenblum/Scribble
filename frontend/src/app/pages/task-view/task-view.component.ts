@@ -42,6 +42,7 @@ export class TaskViewComponent implements OnInit {
       }
 
       const listId = params['listId'];
+      this.selectedListId = listId;
       // const listId = params?.listId;
       if (![null, undefined, ''].includes(listId)) {
         this.taskService.getTasks(listId).subscribe((tasks: any) => {

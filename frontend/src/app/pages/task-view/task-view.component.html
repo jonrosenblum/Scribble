@@ -11,6 +11,12 @@
           routerLinkActive="is-active"
         >
           <p>{{ list.title }}</p>
+
+          <button class="button is-danger list-delete-btn" style="margin-left: auto;" (click)="onDeleteListClick(list._id)">
+            <div class="icon">
+              <i class="fas fa-trash"></i>
+            </div>
+          </button>
         </a>
 
       </div>

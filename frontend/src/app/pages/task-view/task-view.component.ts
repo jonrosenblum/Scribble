@@ -62,9 +62,9 @@ export class TaskViewComponent implements OnInit {
     });
   }
 
-  onDeleteListClick() {
-    this.taskService.deleteList(this.selectedListId).subscribe((res: any) => {
-      this.router.navigate(['/lists']);
+  onDeleteListClick(listId: string) {
+    this.taskService.deleteList(listId).subscribe((res: any) => {
+      this.router.navigate(['authenticated/lists']);
       console.log(res);
     });
   }
@@ -72,7 +72,7 @@ export class TaskViewComponent implements OnInit {
   onDeleteTaskClick(id: string) {
     this.taskService
       .deleteTask(this.selectedListId, id)
-      .subscribe((res: any) => {
+      .subscribe((res: any) => {  
         if (!this.tasks) {
           return;
         }

@@ -10,7 +10,7 @@
     <a href=""><img src="https://badgen.net/github/commits/jonrosenblum/Tasker" /></a>
 </p>
 
-<h1 align="center"><b>Tasker</b></h1>
+<h1 align="center"><b>Scribble</b></h1>
 <h4 align="center">Your Digital Notebook for Efficient Task Management</h4>
 
 <p align="center">
@@ -26,39 +26,39 @@
 
 ## Introduction
 
-Welcome to Tasker, your digital notebook for efficient task management. Tasker is a task management application built on the MEAN (MongoDB, Express.js, Angular, Node.js) stack, inspired by the simplicity and elegance of Apple's Notes app. With Tasker, you can effortlessly manage your to-do lists, organize your tasks, and stay productive.
+Welcome to Scribble, your digital notebook for efficient task management. Scribble is a task management application built on the MEAN (MongoDB, Express.js, Angular, Node.js) stack, inspired by the simplicity and elegance of Apple's Notes app. With Scribble, you can effortlessly manage your to-do lists, organize your tasks, and stay productive.
 
 ## Key Functionalities
 
-- **User-Friendly Interface**: Tasker provides an intuitive and clean interface, ensuring you can quickly and easily create, edit, and organize your tasks.
+- **User-Friendly Interface**: Scribble provides an intuitive and clean interface, ensuring you can quickly and easily create, edit, and organize your tasks.
 
 - **Task Organization**: Categorize tasks into folders or notebooks, just like you do with Apple's Notes, to keep everything neat and tidy.
 
-- **Cross-Platform Sync**: Access your tasks from anywhere, as Tasker seamlessly syncs your data across all your devices.
+- **Cross-Platform Sync**: Access your tasks from anywhere, as Scribble seamlessly syncs your data across all your devices.
 
 - **Secure and Private**: Your data is kept safe and private with robust security measures.
 
-Tasker is your digital companion for staying organized and productive, just like Apple's Notes, but tailored to your unique needs.
+Scribble is your digital companion for staying organized and productive, just like Apple's Notes, but tailored to your unique needs.
 
 ## Accomplishments
 
 ### Deployment with Docker and AWS
 
-We're excited to share the successful deployment of Tasker using Docker containerization and AWS (Amazon Web Services) server. This deployment approach offers scalability, reliability, and ease of management for our task management application.
+We're excited to share the successful deployment of Scribble using Docker containerization and AWS (Amazon Web Services) server. This deployment approach offers scalability, reliability, and ease of management for our task management application.
 
 #### Docker Containerization
 
-Tasker is containerized using Docker to encapsulate the application and its dependencies into isolated containers. This ensures a consistent and reproducible environment across different stages of the deployment process.
+Scribble is containerized using Docker to encapsulate the application and its dependencies into isolated containers. This ensures a consistent and reproducible environment across different stages of the deployment process.
 
-- **Docker Image**: We've created a Docker image of Tasker, making it portable and easy to deploy on various environments.
+- **Docker Image**: We've created a Docker image of Scribble, making it portable and easy to deploy on various environments.
 
-- **Container Orchestration**: We've also leveraged Docker Compose for orchestrating multiple containers, allowing us to manage different components of Tasker seamlessly.
+- **Container Orchestration**: We've also leveraged Docker Compose for orchestrating multiple containers, allowing us to manage different components of Scribble seamlessly.
 
 #### AWS Server Deployment
 
 For production-grade hosting, we chose Amazon Web Services (AWS) as our cloud provider. AWS offers a wide range of services that perfectly align with our requirements.
 
-- **Elastic Compute Cloud (EC2)**: We've deployed Tasker on AWS EC2 instances, providing scalable, secure, and customizable virtual servers.
+- **Elastic Compute Cloud (EC2)**: We've deployed Scribble on AWS EC2 instances, providing scalable, secure, and customizable virtual servers.
 
 This deployment architecture ensures that Tasker is highly available, fault-tolerant, and can handle varying levels of traffic, making it a robust and scalable solution for our users.
 

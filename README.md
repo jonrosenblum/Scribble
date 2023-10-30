@@ -60,12 +60,6 @@ For production-grade hosting, we chose Amazon Web Services (AWS) as our cloud pr
 
 - **Elastic Compute Cloud (EC2)**: We've deployed Tasker on AWS EC2 instances, providing scalable, secure, and customizable virtual servers.
 
-- **Load Balancing**: Tasker's deployment utilizes AWS Elastic Load Balancing (ELB) to distribute incoming traffic across multiple EC2 instances, ensuring high availability and redundancy.
-
-- **Auto Scaling**: We've set up Auto Scaling to automatically adjust the number of EC2 instances based on traffic demands, ensuring optimal performance and cost efficiency.
-
-- **Security**: Our AWS deployment follows best practices for security, including network security groups and IAM roles to restrict access and protect data.
-
 This deployment architecture ensures that Tasker is highly available, fault-tolerant, and can handle varying levels of traffic, making it a robust and scalable solution for our users.
 
 We're proud of this accomplishment, and it reinforces our commitment to delivering a secure and reliable task management application.

@@ -43,6 +43,7 @@ services:
       - "prod"
     mem_limit: 1g
     cpus: 1
+    restart: unless-stopped
 
   mongo:
     container_name: mongo-db

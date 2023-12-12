@@ -408,6 +408,14 @@ app.use((err, req, res, next) => {
   res.status(500).send("Something broke!");
 });
 
+app.use((error, req, res, next) => {
+
+  if (res.headersSent) {
+      return next(err)
+  }
+  res.status(500).send('INTERNAL SERVER ERROR !')
+});
+
 app.listen(3000, () => {
   console.log("Server is listening on port 3000");
 });

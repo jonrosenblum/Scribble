@@ -173,9 +173,9 @@ app.delete("/api/lists/:id", authenticate, (req, res) => {
     _id: req.params.id,
     _userId: req.user_id,
   }).then((removedListDoc) => {
-    res.send(removedListDoc);
     // delete all the tasks that are in the deleted list
     deleteTasksFromList(removedListDoc._id);
+    res.send(removedListDoc);
   });
 });
 
